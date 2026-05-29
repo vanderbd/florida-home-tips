@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const PAGE_SIZE = 9;
+
+export async function getStaticPaths() {
+  const pageSize = 9;
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+  const sorted = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const totalPages = Math.ceil(sorted.length / pageSize);
+
+  // Page 1 is handled by blog/index.astro — only generate page 2 and beyond
+  if (totalPages <= 1) return [];
+
+  return Array.from({ length: totalPages - 1 }, (_, i) => {
+    const pageNum = i + 2;
+    const start   = (pageNum - 1) * pageSize;
+    return {
+      params: { page: String(pageNum) },
+      props: {
+        posts: sorted.slice(start, start + pageSize),
+        page: pageNum,
+        totalPages,
+      },
+    };
+  });
+}
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  page: number;
+  totalPages: number;
+}
+
+const { posts, page, totalPages } = Astro.props;
+---
+
+<BaseLayout
+  title={`Blog — Page ${page} | Florida Home Tips`}
+  description={`Florida home maintenance guides — page ${page} of ${totalPages}.`}
+  canonicalURL={new URL(`/blog/${page}`, Astro.site).toString()}
+>
+  <BreadcrumbSchema
+    crumbs={[
+      { name: 'Home', url: new URL('/', Astro.site).toString() },
+      { name: 'Blog', url: new URL('/blog', Astro.site).toString() },
+      { name: `Page ${page}`, url: new URL(`/blog/${page}`, Astro.site).toString() },
+    ]}
+  />
+
+  <!-- Page header -->
+  <div class="bg-dark-blue py-14 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-montserrat text-cyan text-sm font-semibold uppercase tracking-widest mb-3">
+        All Guides — Page {page}
+      </p>
+      <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-white">
+        Florida Home Tips Blog
+      </h1>
+    </div>
+  </div>
+
+  <!-- Post grid -->
+  <section class="bg-gray-50 py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            image={post.data.image}
+            slug={post.id}
+          />
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      <nav
+        class="flex items-center justify-center gap-3"
+        aria-label="Blog pagination"
+      >
+        {page > 2 && (
+          <a
+            href={`/blog/${page - 1}`}
+            class="px-4 py-2 rounded-lg bg-white border border-gray-200 text-dark-blue font-montserrat font-semibold text-sm hover:border-cyan hover:text-vivid-cyan transition-colors"
+          >
+            ← Prev
+          </a>
+        )}
+        {page === 2 && (
+          <a
+            href="/blog"
+            class="px-4 py-2 rounded-lg bg-white border border-gray-200 text-dark-blue font-montserrat font-semibold text-sm hover:border-cyan hover:text-vivid-cyan transition-colors"
+          >
+            ← Prev
+          </a>
+        )}
+
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) =>
+          p === 1 ? (
+            <a
+              href="/blog"
+              class:list={[
+                'px-4 py-2 rounded-lg font-montserrat font-semibold text-sm transition-colors',
+                page === p
+                  ? 'bg-cyan text-dark-blue border-transparent'
+                  : 'bg-white border border-gray-200 text-dark-blue hover:border-cyan hover:text-vivid-cyan',
+              ]}
+              aria-current={page === p ? 'page' : undefined}
+            >
+              1
+            </a>
+          ) : (
+            <a
+              href={`/blog/${p}`}
+              class:list={[
+                'px-4 py-2 rounded-lg font-montserrat font-semibold text-sm transition-colors',
+                page === p
+                  ? 'bg-cyan text-dark-blue border-transparent'
+                  : 'bg-white border border-gray-200 text-dark-blue hover:border-cyan hover:text-vivid-cyan',
+              ]}
+              aria-current={page === p ? 'page' : undefined}
+            >
+              {p}
+            </a>
+          )
+        )}
+
+        {page < totalPages && (
+          <a
+            href={`/blog/${page + 1}`}
+            class="px-4 py-2 rounded-lg bg-white border border-gray-200 text-dark-blue font-montserrat font-semibold text-sm hover:border-cyan hover:text-vivid-cyan transition-colors"
+          >
+            Next →
+          </a>
+        )}
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

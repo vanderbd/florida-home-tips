@@ -1,0 +1,80 @@
+---
+import ProductCard from '../ProductCard.astro';
+
+// Affiliate links are placeholders (#) — replace with real affiliate URLs before launch
+const products = [
+  {
+    title: 'Whole-Room Dehumidifier (50 Pint)',
+    description: 'Pulls excess moisture from Florida\'s humid air before it causes mold. Essential for living areas, bedrooms, and garages.',
+    category: 'Mold & Humidity',
+    emoji: '💧',
+    affiliateUrl: '#',
+    badge: 'Top Pick',
+  },
+  {
+    title: 'Hurricane Panel Hardware Kit',
+    description: 'Heavy-duty mounting hardware for corrugated aluminum storm panels. Rated for 130+ mph winds.',
+    category: 'Hurricane Prep',
+    emoji: '🌀',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Home Defense Perimeter Spray',
+    description: 'Creates a long-lasting outdoor barrier against 130+ insects including ants, roaches, and spiders.',
+    category: 'Pests',
+    emoji: '🐜',
+    affiliateUrl: '#',
+    badge: 'Best Value',
+  },
+  {
+    title: 'Pin-Type Moisture Meter',
+    description: 'Instantly detects moisture behind walls, under flooring, and in framing. Essential for tracking slow leaks.',
+    category: 'DIY Fixes',
+    emoji: '🌡️',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Elastomeric Stucco Sealant',
+    description: 'Flexible, waterproof caulk designed to move with Florida\'s thermal expansion cycles. Prevents water intrusion at cracks.',
+    category: 'Exterior Maintenance',
+    emoji: '🏠',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Soft Wash Pump Sprayer (2 Gallon)',
+    description: 'Low-pressure application for algae and mold treatments on roofs, stucco, and driveways without causing damage.',
+    category: 'Exterior Maintenance',
+    emoji: '🚿',
+    affiliateUrl: '#',
+  },
+];
+---
+
+<section class="bg-gray-50 py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10 gap-4">
+      <div>
+        <p class="font-montserrat font-semibold text-sm uppercase tracking-wider text-vivid-cyan mb-2">
+          Affiliate Partners
+        </p>
+        <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-dark-blue">
+          Tools We Recommend
+        </h2>
+        <p class="text-gray-500 mt-2 text-base">
+          Products Florida homeowners actually use.
+        </p>
+      </div>
+      <a
+        href="/recommended"
+        class="font-montserrat font-semibold text-sm text-vivid-cyan hover:text-brand-blue transition-colors flex-shrink-0"
+      >
+        See all recommendations →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+      {products.map((product) => (
+        <ProductCard {...product} />
+      ))}
+    </div>
+  </div>
+</section>

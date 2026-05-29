@@ -1,0 +1,123 @@
+---
+const year = new Date().getFullYear();
+
+const exploreLinks = [
+  { href: '/blog',          label: 'Blog' },
+  { href: '/recommended',   label: 'Recommended Products' },
+  { href: '/checklist',     label: 'Free Checklist' },
+  { href: '/local-partners',label: 'Local Partners' },
+];
+
+const companyLinks = [
+  { href: '/about',          label: 'About' },
+  { href: '/contact',        label: 'Contact' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+];
+
+const categories = [
+  { href: '/blog?category=mold-humidity',        label: '🦠 Mold & Humidity' },
+  { href: '/blog?category=hurricane-prep',       label: '🌪 Hurricane Prep' },
+  { href: '/blog?category=pests',                label: '🐜 Pests' },
+  { href: '/blog?category=exterior-maintenance', label: '🏠 Exterior Maintenance' },
+  { href: '/blog?category=diy-fixes',            label: '🔧 DIY Fixes' },
+];
+---
+
+<footer class="bg-dark-blue text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
+
+    <!-- Top grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <a href="/" class="inline-block mb-4" aria-label="Florida Home Tips — Home">
+          <img
+            src="/images/logo/horizontal-light.svg"
+            alt="Florida Home Tips"
+            class="h-14 md:h-16 w-auto"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">
+          Simple, practical home tips for Florida homeowners. Protect your home from humidity, mold, storms, and pests.
+        </p>
+        <!-- Social placeholders — swap in real URLs when accounts are set up -->
+        <div class="flex items-center gap-3" aria-label="Social media links">
+          <a
+            href="#"
+            aria-label="Follow Florida Home Tips on Facebook"
+            class="w-8 h-8 rounded-full bg-white/10 hover:bg-cyan hover:text-dark-blue flex items-center justify-center text-xs font-bold text-white/60 transition-all"
+          >f</a>
+          <a
+            href="#"
+            aria-label="Follow Florida Home Tips on Instagram"
+            class="w-8 h-8 rounded-full bg-white/10 hover:bg-cyan hover:text-dark-blue flex items-center justify-center text-xs font-bold text-white/60 transition-all"
+          >ig</a>
+          <a
+            href="#"
+            aria-label="Follow Florida Home Tips on Pinterest"
+            class="w-8 h-8 rounded-full bg-white/10 hover:bg-cyan hover:text-dark-blue flex items-center justify-center text-xs font-bold text-white/60 transition-all"
+          >pt</a>
+        </div>
+      </div>
+
+      <!-- Categories column -->
+      <div>
+        <h3 class="font-montserrat font-semibold text-xs uppercase tracking-wider text-white/40 mb-4">
+          Topics
+        </h3>
+        <ul class="space-y-2">
+          {categories.map(({ href, label }) => (
+            <li>
+              <a href={href} class="text-white/70 hover:text-cyan text-sm transition-colors">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Explore column -->
+      <div>
+        <h3 class="font-montserrat font-semibold text-xs uppercase tracking-wider text-white/40 mb-4">
+          Explore
+        </h3>
+        <ul class="space-y-2">
+          {exploreLinks.map(({ href, label }) => (
+            <li>
+              <a href={href} class="text-white/70 hover:text-cyan text-sm transition-colors">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company column -->
+      <div>
+        <h3 class="font-montserrat font-semibold text-xs uppercase tracking-wider text-white/40 mb-4">
+          Company
+        </h3>
+        <ul class="space-y-2">
+          {companyLinks.map(({ href, label }) => (
+            <li>
+              <a href={href} class="text-white/70 hover:text-cyan text-sm transition-colors">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/40">
+      <p>© {year} Florida Home Tips. All rights reserved.</p>
+      <p>
+        Affiliate disclosure: Some links on this site are affiliate links. We may earn a commission at no extra cost to you.
+      </p>
+    </div>
+  </div>
+</footer>

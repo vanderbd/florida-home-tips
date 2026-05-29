@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const partnerTypes = [
+  {
+    emoji: '🏗️',
+    title: 'Roofing & Exterior Contractors',
+    description: 'Licensed Florida roofers, stucco specialists, and exterior painters serving local homeowners.',
+  },
+  {
+    emoji: '🌀',
+    title: 'Hurricane Shutter & Impact Window Companies',
+    description: 'Installation companies for storm panels, accordion shutters, and impact-rated windows and doors.',
+  },
+  {
+    emoji: '🐜',
+    title: 'Pest Control Services',
+    description: 'Licensed Florida pest control operators offering termite bonds, perimeter treatments, and wildlife exclusion.',
+  },
+  {
+    emoji: '💧',
+    title: 'HVAC & Indoor Air Quality',
+    description: 'AC service companies, whole-home dehumidifier installers, and air quality specialists.',
+  },
+  {
+    emoji: '🏠',
+    title: 'Home Inspectors & Restoration',
+    description: 'Licensed home inspectors and mold remediation / water damage restoration companies.',
+  },
+  {
+    emoji: '🏡',
+    title: 'Real Estate & Insurance Professionals',
+    description: 'Agents and brokers who work with Florida homeowners, and insurance agents who specialize in FL homeowners policies.',
+  },
+];
+
+const benefits = [
+  'Listed on our dedicated Local Partners page (permanent link)',
+  'Featured in relevant blog posts and resource guides',
+  'Mentioned in our email newsletter to Florida homeowners',
+  'Logo and link on the Florida Home Tips homepage',
+];
+---
+
+<BaseLayout
+  title="Local Partners — Florida Home Tips"
+  description="Partner with Florida Home Tips to reach Florida homeowners actively looking for contractors, services, and local professionals. Learn about our local partnership program."
+>
+  <BreadcrumbSchema
+    crumbs={[
+      { name: 'Home',           url: new URL('/', Astro.site).toString() },
+      { name: 'Local Partners', url: new URL('/local-partners', Astro.site).toString() },
+    ]}
+  />
+
+  <!-- Header -->
+  <div class="bg-dark-blue py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-montserrat text-cyan text-sm font-semibold uppercase tracking-widest mb-3">
+        Local Partnerships
+      </p>
+      <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-white leading-tight">
+        Reach Florida Homeowners<br />Who Are Ready to Act
+      </h1>
+      <p class="text-white/70 mt-4 text-base md:text-lg max-w-2xl">
+        Florida Home Tips connects local service providers with homeowners actively researching solutions to Florida-specific home problems.
+      </p>
+    </div>
+  </div>
+
+  <!-- Partner types -->
+  <section class="bg-white py-14 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="font-montserrat font-semibold text-sm uppercase tracking-wider text-vivid-cyan mb-2">
+          Who We Work With
+        </p>
+        <h2 class="font-montserrat font-bold text-2xl md:text-3xl text-dark-blue">
+          Types of Local Partners
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {partnerTypes.map(({ emoji, title, description }) => (
+          <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+            <span class="text-3xl mb-3 block" aria-hidden="true">{emoji}</span>
+            <h3 class="font-montserrat font-bold text-dark-blue text-base mb-2">{title}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="bg-gray-50 py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-montserrat font-bold text-2xl md:text-3xl text-dark-blue mb-10">
+        What's Included
+      </h2>
+      <ul class="space-y-4 text-left mb-12">
+        {benefits.map((benefit) => (
+          <li class="flex items-start gap-3 bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-cyan flex-shrink-0 mt-0.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+            <span class="text-gray-700 text-sm leading-snug">{benefit}</span>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Partner logo placeholder grid -->
+      <div class="mb-12">
+        <p class="font-montserrat font-semibold text-sm text-gray-400 uppercase tracking-wider mb-6">
+          Partner Spots Available
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div class="aspect-video bg-white border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center">
+              <span class="text-gray-300 text-xs font-montserrat font-medium">Your Logo</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-dark-blue rounded-2xl p-8 md:p-10">
+        <h3 class="font-montserrat font-bold text-white text-xl mb-2">
+          Interested in partnering?
+        </h3>
+        <p class="text-white/60 text-sm mb-6">
+          Send us a note with your business name, service area, and what you do. We'll respond within 2 business days.
+        </p>
+        <a
+          href="mailto:hello@floridahometips.com?subject=Local%20Partnership%20Inquiry"
+          class="inline-flex items-center px-8 py-4 bg-cyan text-dark-blue font-montserrat font-bold text-base rounded-xl hover:bg-vivid-cyan transition-colors"
+        >
+          Send a Partnership Inquiry
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

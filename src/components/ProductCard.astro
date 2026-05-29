@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  emoji: string;
+  affiliateUrl: string;
+  badge?: string;
+}
+
+const { title, description, category, emoji, affiliateUrl, badge } = Astro.props;
+const isPlaceholder = affiliateUrl === '#';
+---
+
+<div class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+
+  <!-- Image / emoji placeholder -->
+  <div class="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center flex-shrink-0 max-h-40">
+    <span class="text-5xl select-none" aria-hidden="true">{emoji}</span>
+  </div>
+
+  <!-- Content -->
+  <div class="p-5 flex flex-col flex-1">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-xs font-montserrat font-semibold uppercase tracking-wider text-vivid-cyan">
+        {category}
+      </span>
+      {badge && (
+        <span class="text-xs bg-azure/10 text-azure font-montserrat font-semibold px-2 py-0.5 rounded-full">
+          {badge}
+        </span>
+      )}
+    </div>
+    <h3 class="font-montserrat font-bold text-dark-blue text-base mb-2 leading-snug flex-1">
+      {title}
+    </h3>
+    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+      {description}
+    </p>
+    <a
+      href={affiliateUrl}
+      rel={isPlaceholder ? undefined : 'nofollow noopener noreferrer'}
+      target={isPlaceholder ? undefined : '_blank'}
+      class="mt-auto block text-center px-4 py-2.5 bg-cyan text-dark-blue font-montserrat font-semibold text-sm rounded-lg hover:bg-vivid-cyan transition-colors"
+    >
+      {isPlaceholder ? 'Coming Soon' : 'View on Amazon →'}
+    </a>
+  </div>
+</div>

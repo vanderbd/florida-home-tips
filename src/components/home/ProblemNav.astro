@@ -1,0 +1,54 @@
+---
+import CategoryCard from '../CategoryCard.astro';
+
+const categories = [
+  {
+    emoji: '🦠',
+    title: 'Mold & Humidity',
+    description: 'Control moisture, prevent mold growth, and keep your air quality healthy year-round.',
+    href: '/blog',
+  },
+  {
+    emoji: '🌪',
+    title: 'Hurricane Prep',
+    description: 'Prepare your home before the storm — shutters, supplies, and what to do after.',
+    href: '/blog',
+  },
+  {
+    emoji: '🐜',
+    title: 'Pests',
+    description: 'Termites, roaches, ants, and more — what actually works in Florida\'s climate.',
+    href: '/blog',
+  },
+  {
+    emoji: '🏠',
+    title: 'Exterior Maintenance',
+    description: 'Roofs, stucco, driveways, and gutters — your annual Florida exterior schedule.',
+    href: '/blog',
+  },
+  {
+    emoji: '🔧',
+    title: 'DIY Fixes',
+    description: 'Common repairs and improvements every Florida homeowner can tackle themselves.',
+    href: '/blog',
+  },
+];
+---
+
+<section class="bg-gray-100 py-16 md:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <p class="font-montserrat font-semibold text-sm uppercase tracking-wider text-vivid-cyan mb-2">
+        Find What You Need
+      </p>
+      <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-dark-blue">
+        What do you need help with?
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {categories.map((cat) => (
+        <CategoryCard {...cat} />
+      ))}
+    </div>
+  </div>
+</section>

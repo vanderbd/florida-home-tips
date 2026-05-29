@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const reasons = [
+  { emoji: '🤝', label: 'Local partnerships',    detail: 'Interested in being featured as a local partner or sponsor.' },
+  { emoji: '✏️', label: 'Content corrections',   detail: 'Found something inaccurate or outdated — let us know.' },
+  { emoji: '💡', label: 'Topic suggestions',     detail: 'A Florida home problem you\'d like us to cover.' },
+  { emoji: '📰', label: 'Press & media',         detail: 'Editorial inquiries, quotes, or collaboration requests.' },
+];
+---
+
+<BaseLayout
+  title="Contact — Florida Home Tips"
+  description="Get in touch with Florida Home Tips for partnership inquiries, content corrections, topic suggestions, or press requests."
+>
+  <BreadcrumbSchema
+    crumbs={[
+      { name: 'Home',    url: new URL('/', Astro.site).toString() },
+      { name: 'Contact', url: new URL('/contact', Astro.site).toString() },
+    ]}
+  />
+
+  <!-- Header -->
+  <div class="bg-dark-blue py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-montserrat text-cyan text-sm font-semibold uppercase tracking-widest mb-3">
+        Get in Touch
+      </p>
+      <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-white">
+        Contact Us
+      </h1>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <section class="bg-white py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <p class="text-gray-600 text-lg leading-relaxed mb-10">
+        We read every message. Response time is typically 1–2 business days.
+      </p>
+
+      <!-- Reasons to reach out -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        {reasons.map(({ emoji, label, detail }) => (
+          <div class="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100">
+            <span class="text-2xl flex-shrink-0" aria-hidden="true">{emoji}</span>
+            <div>
+              <p class="font-montserrat font-bold text-dark-blue text-sm">{label}</p>
+              <p class="text-gray-500 text-xs mt-1 leading-snug">{detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="bg-dark-blue rounded-2xl p-8 md:p-10 text-center">
+        <p class="font-montserrat font-bold text-white text-xl mb-2">
+          Send us a message
+        </p>
+        <p class="text-white/60 text-sm mb-8">
+          We'll get back to you within 1–2 business days.
+        </p>
+        <a
+          href="mailto:hello@floridahometips.com"
+          class="inline-flex items-center px-8 py-4 bg-cyan text-dark-blue font-montserrat font-bold text-base rounded-xl hover:bg-vivid-cyan transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+          </svg>
+          hello@floridahometips.com
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

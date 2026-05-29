@@ -1,0 +1,65 @@
+---
+const checklistItems = [
+  'Pre-hurricane season roof and shutter inspection',
+  'HVAC condensate drain cleaning schedule',
+  'Quarterly pest control perimeter treatment',
+  'Annual exterior soft wash and stucco check',
+  'Storm supply list and 7-day emergency kit',
+  'Seasonal gutter and downspout checklist',
+  'Mold and humidity monitoring routine',
+  'Monthly moisture meter spot-checks',
+];
+---
+
+<section class="bg-dark-blue py-16 md:py-24" id="checklist">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Checklist preview -->
+      <div>
+        <p class="font-montserrat font-semibold text-sm uppercase tracking-wider text-cyan mb-3">
+          Free Download
+        </p>
+        <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-white mb-6">
+          The Florida Home<br />Maintenance Checklist
+        </h2>
+        <p class="text-white/70 text-lg mb-8 leading-relaxed">
+          12 essential maintenance tasks every Florida homeowner should do each year — organized by season. Free, practical, and Florida-specific.
+        </p>
+        <ul class="space-y-3" aria-label="Checklist preview">
+          {checklistItems.map((item) => (
+            <li class="flex items-start gap-3 text-white/80 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-cyan flex-shrink-0 mt-0.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+              </svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Kit form embed -->
+      <div class="bg-white rounded-2xl p-8 shadow-2xl">
+        <h3 class="font-montserrat font-bold text-xl text-dark-blue mb-2">
+          Get Your Free Checklist
+        </h3>
+        <p class="text-gray-500 text-sm mb-6">
+          Enter your email and we'll send you the complete checklist instantly.
+        </p>
+
+        <!-- KIT FORM EMBED -->
+        <!-- Paste your Kit (ConvertKit) form embed code here once your account is set up -->
+        <!-- The form should collect: First Name (optional), Email (required) -->
+        <!-- Deliver: Florida Home Maintenance Checklist PDF -->
+        <div class="rounded-lg border-2 border-dashed border-gray-200 p-6 text-center text-gray-400 text-sm">
+          <p class="font-montserrat font-semibold mb-1">Kit Form Goes Here</p>
+          <p>Paste your ConvertKit embed code above this placeholder block</p>
+        </div>
+
+        <p class="text-gray-400 text-xs mt-4 text-center">
+          No spam. Unsubscribe anytime. We respect your privacy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

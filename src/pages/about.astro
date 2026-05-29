@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const categories = [
+  { emoji: '🦠', title: 'Mold & Humidity',     description: 'Why Florida homes breed mold, and the systems that stop it.' },
+  { emoji: '🌪',  title: 'Hurricane Prep',       description: 'Before, during, and after — the complete storm guide.' },
+  { emoji: '🐜',  title: 'Pests',               description: 'Termites, roaches, ants, and what actually works here.' },
+  { emoji: '🏠',  title: 'Exterior Maintenance', description: 'Roofs, stucco, gutters, and your annual Florida schedule.' },
+  { emoji: '🔧',  title: 'DIY Fixes',            description: 'Repairs and improvements every homeowner can tackle.' },
+];
+---
+
+<BaseLayout
+  title="About — Florida Home Tips"
+  description="Florida Home Tips helps Florida homeowners protect and maintain their homes with practical, Florida-specific advice. Learn about our mission and approach."
+>
+  <BreadcrumbSchema
+    crumbs={[
+      { name: 'Home',  url: new URL('/', Astro.site).toString() },
+      { name: 'About', url: new URL('/about', Astro.site).toString() },
+    ]}
+  />
+
+  <!-- Header -->
+  <div class="bg-dark-blue py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-montserrat text-cyan text-sm font-semibold uppercase tracking-widest mb-3">
+        Our Story
+      </p>
+      <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-white leading-tight">
+        Built for Florida.<br />By Florida Homeowners.
+      </h1>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <article class="bg-white py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 text-gray-700 leading-relaxed">
+
+      <div>
+        <h2 class="font-montserrat font-bold text-2xl text-dark-blue mb-4">
+          Florida homes are different.
+        </h2>
+        <p class="mb-4">
+          Pick up a generic home maintenance book and you'll find advice written for cold climates — winterizing pipes, sealing against drafts, dealing with snow loads. Useful in Ohio. Useless here.
+        </p>
+        <p>
+          In Florida, the challenges are entirely different: 74% average relative humidity, 12 months of pest pressure, a hurricane season that starts June 1 and ends November 30, salt air corrosion within miles of the coast, and UV radiation that ages roofing and paint faster than anywhere else in the country. We needed resources built specifically for this climate. Florida Home Tips is that resource.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-montserrat font-bold text-2xl text-dark-blue mb-4">
+          What we cover
+        </h2>
+        <p class="mb-6">
+          Every article, guide, and checklist on this site focuses on one of five areas where Florida homeowners need real, specific help:
+        </p>
+        <ul class="space-y-4 not-prose">
+          {categories.map(({ emoji, title, description }) => (
+            <li class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+              <span class="text-2xl flex-shrink-0 mt-0.5" aria-hidden="true">{emoji}</span>
+              <div>
+                <p class="font-montserrat font-bold text-dark-blue">{title}</p>
+                <p class="text-gray-500 text-sm mt-0.5">{description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-montserrat font-bold text-2xl text-dark-blue mb-4">
+          Our approach
+        </h2>
+        <p class="mb-4">
+          We write for homeowners, not contractors. That means we explain the why behind every recommendation, we tell you when to DIY and when to call a pro, and we never pad an article to hit a word count. If a guide can be said in 800 words, that's how long it is.
+        </p>
+        <p>
+          We also use affiliate links to products we'd actually buy — and when we link to something, it's because it's genuinely the right tool for the job in a Florida home, not because the margin is highest.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-montserrat font-bold text-2xl text-dark-blue mb-4">
+          Get started
+        </h2>
+        <p class="mb-6">
+          The best starting point for most Florida homeowners is the free maintenance checklist — 12 tasks, organized by season, that cover the most costly and most preventable home problems in this climate.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 not-prose">
+          <a
+            href="/checklist"
+            class="inline-flex items-center justify-center px-6 py-3 bg-cyan text-dark-blue font-montserrat font-bold text-sm rounded-xl hover:bg-vivid-cyan transition-colors"
+          >
+            Download the Free Checklist
+          </a>
+          <a
+            href="/blog"
+            class="inline-flex items-center justify-center px-6 py-3 border-2 border-dark-blue text-dark-blue font-montserrat font-semibold text-sm rounded-xl hover:bg-dark-blue hover:text-white transition-all duration-200"
+          >
+            Browse All Guides
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+</BaseLayout>

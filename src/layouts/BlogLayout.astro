@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  category: string;
+  image?: string;
+  slug: string;
+}
+
+const { title, description, pubDate, category, image, slug } = Astro.props;
+
+const postUrl = new URL(`/blog/${slug}`, Astro.site).toString();
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Florida Home Tips',
+    url: Astro.site?.toString(),
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Florida Home Tips',
+    url: Astro.site?.toString(),
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/images/logo/logo-dark.png', Astro.site).toString(),
+    },
+  },
+  url: postUrl,
+  ...(image && { image: new URL(image, Astro.site).toString() }),
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  type="article"
+  canonicalURL={postUrl}
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(articleSchema)}
+    slot="head"
+  />
+  <slot />
+</BaseLayout>

@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-dark-blue:  #101f41;
+  --color-blue:       #4f6ae1;
+  --color-azure:      #43acec;
+  --color-white:      #ffffff;
+  --color-cyan:       #5ce2e6;
+  --color-vivid-cyan: #0a969e;
+}
+
+@layer base {
+  html {
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

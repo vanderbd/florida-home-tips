@@ -1,0 +1,38 @@
+---
+// Placeholder section — replace with real sponsor logos and links when partnerships are in place
+const placeholderSpots = 4;
+---
+
+<section class="bg-dark-blue py-14 md:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <p class="font-montserrat font-semibold text-sm uppercase tracking-wider text-cyan mb-2">
+        Local Partners
+      </p>
+      <h2 class="font-montserrat font-bold text-2xl md:text-3xl text-white mb-3">
+        Trusted by the Florida Home Tips Community
+      </h2>
+      <p class="text-white/60 text-base max-w-xl mx-auto">
+        We partner with vetted Florida contractors, suppliers, and service providers to bring you trustworthy local recommendations.
+      </p>
+    </div>
+
+    <!-- Sponsor logo placeholders -->
+    <div class="flex flex-wrap justify-center items-center gap-6 mb-10">
+      {Array.from({ length: placeholderSpots }).map((_, i) => (
+        <div class="w-36 h-16 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center">
+          <span class="text-white/20 text-xs font-montserrat font-medium">Partner {i + 1}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        href="/local-partners"
+        class="inline-flex items-center px-6 py-3 border-2 border-cyan/50 text-cyan font-montserrat font-semibold text-sm rounded-lg hover:bg-cyan hover:text-dark-blue hover:border-cyan transition-all duration-200"
+      >
+        Become a Local Partner
+      </a>
+    </div>
+  </div>
+</section>

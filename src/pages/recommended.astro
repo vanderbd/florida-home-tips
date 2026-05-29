@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+
+const categoryMeta: Record<string, { emoji: string; description: string }> = {
+  'Mold & Humidity': {
+    emoji: '💧',
+    description: 'Control moisture before it becomes a mold problem.',
+  },
+  'Hurricane Prep': {
+    emoji: '🌀',
+    description: 'Be ready before the storm, not during it.',
+  },
+  'Pests': {
+    emoji: '🐜',
+    description: 'Year-round pest pressure requires year-round defense.',
+  },
+  'Exterior Maintenance': {
+    emoji: '🏠',
+    description: 'Protect your exterior from UV, salt, algae, and heat.',
+  },
+  'DIY Fixes': {
+    emoji: '🔧',
+    description: 'The right tools make every Florida home repair easier.',
+  },
+};
+
+const products = [
+  // Mold & Humidity
+  {
+    title: '50-Pint Whole-Room Dehumidifier',
+    description: 'Pulls excess moisture from living areas, bedrooms, and garages. Essential for maintaining safe humidity levels in Florida\'s climate.',
+    category: 'Mold & Humidity',
+    emoji: '💧',
+    affiliateUrl: '#',
+    badge: 'Top Pick',
+  },
+  {
+    title: 'Digital Hygrometer & Humidity Monitor',
+    description: 'Shows real-time indoor temperature and relative humidity. Know when your home crosses the 60% threshold where mold starts growing.',
+    category: 'Mold & Humidity',
+    emoji: '📊',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Mold & Mildew Control Spray',
+    description: 'Penetrates porous surfaces to kill and prevent mold regrowth. Works on drywall, wood framing, grout, and fabric.',
+    category: 'Mold & Humidity',
+    emoji: '🧴',
+    affiliateUrl: '#',
+  },
+
+  // Hurricane Prep
+  {
+    title: 'Portable Inverter Generator (3500W)',
+    description: 'Clean power for refrigerators, medical equipment, and fans. Quiet, fuel-efficient, and safe for sensitive electronics.',
+    category: 'Hurricane Prep',
+    emoji: '⚡',
+    affiliateUrl: '#',
+    badge: 'Top Pick',
+  },
+  {
+    title: 'Hurricane Storm Panel Hardware Kit',
+    description: 'Pre-drilled mounting hardware for corrugated aluminum panels. Rated for 130+ mph winds and compatible with most Florida window sizes.',
+    category: 'Hurricane Prep',
+    emoji: '🔩',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Hand-Crank Emergency Weather Radio',
+    description: 'NOAA weather alerts, AM/FM, solar panel, and USB phone charger. Works when the power is out and cell networks are overwhelmed.',
+    category: 'Hurricane Prep',
+    emoji: '📻',
+    affiliateUrl: '#',
+  },
+
+  // Pests
+  {
+    title: 'Home Defense Perimeter Spray (Gallon)',
+    description: 'Creates a 12-month outdoor barrier against 130+ insects including fire ants, roaches, spiders, and silverfish.',
+    category: 'Pests',
+    emoji: '🐜',
+    affiliateUrl: '#',
+    badge: 'Best Value',
+  },
+  {
+    title: 'In-Ground Termite Bait Stations (6-Pack)',
+    description: 'Monitoring and treatment stations you place around your foundation. Compatible with annual termite bond monitoring programs.',
+    category: 'Pests',
+    emoji: '🪲',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Professional Backpack Pump Sprayer (4 Gal)',
+    description: 'Even spray coverage for perimeter treatments and soft-wash applications. Adjustable nozzle, padded straps, pressure relief valve.',
+    category: 'Pests',
+    emoji: '🎒',
+    affiliateUrl: '#',
+  },
+
+  // Exterior Maintenance
+  {
+    title: 'Elastomeric Stucco Caulk',
+    description: 'Flexible, waterproof sealant designed for Florida\'s thermal expansion cycles. Stays pliable at 100°F+ and bonds to stucco, concrete, and block.',
+    category: 'Exterior Maintenance',
+    emoji: '🏗️',
+    affiliateUrl: '#',
+    badge: 'Top Pick',
+  },
+  {
+    title: '2-Gallon Low-Pressure Soft Wash Sprayer',
+    description: 'Applies diluted bleach and algae treatments to roofs and stucco without high-pressure damage. The right tool for Florida soft washing.',
+    category: 'Exterior Maintenance',
+    emoji: '🚿',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'Roof & Exterior Algae Remover (Concentrate)',
+    description: 'Removes black algae streaks from shingles, tile, and stucco. No-rinse formula — rain washes away treated growth over 3–6 months.',
+    category: 'Exterior Maintenance',
+    emoji: '🌿',
+    affiliateUrl: '#',
+  },
+
+  // DIY Fixes
+  {
+    title: 'Pin-Type Moisture Meter',
+    description: 'Instantly reads moisture content in drywall, wood framing, and flooring. Essential for tracking down slow leaks before they cause major damage.',
+    category: 'DIY Fixes',
+    emoji: '🔬',
+    affiliateUrl: '#',
+    badge: 'Top Pick',
+  },
+  {
+    title: 'Cordless 20V Caulk Gun',
+    description: 'Variable speed trigger, auto-stop function, and compatibility with standard tubes. Makes perimeter sealing and window caulking significantly easier.',
+    category: 'DIY Fixes',
+    emoji: '🔫',
+    affiliateUrl: '#',
+  },
+  {
+    title: 'HEPA Wet/Dry Shop Vacuum (9 Gal)',
+    description: 'For water extraction after leaks, fine dust after drywall work, and debris cleanup. HEPA filter captures mold spores during remediation work.',
+    category: 'DIY Fixes',
+    emoji: '🧹',
+    affiliateUrl: '#',
+  },
+];
+
+const categoryNames = Object.keys(categoryMeta);
+---
+
+<BaseLayout
+  title="Recommended Products — Florida Home Tips"
+  description="Hand-picked tools, equipment, and supplies that Florida homeowners actually need — organized by category with honest descriptions."
+>
+  <BreadcrumbSchema
+    crumbs={[
+      { name: 'Home',        url: new URL('/', Astro.site).toString() },
+      { name: 'Recommended', url: new URL('/recommended', Astro.site).toString() },
+    ]}
+  />
+
+  <!-- Page header -->
+  <div class="bg-dark-blue py-14 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-montserrat text-cyan text-sm font-semibold uppercase tracking-widest mb-3">
+        Affiliate Partners
+      </p>
+      <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-white mb-4">
+        Tools We Recommend
+      </h1>
+      <p class="text-white/70 text-base md:text-lg max-w-2xl">
+        Products Florida homeowners actually use, selected for quality and Florida-specific usefulness.
+      </p>
+      <p class="mt-4 text-white/40 text-xs max-w-2xl">
+        Affiliate disclosure: Some links on this page earn us a small commission at no extra cost to you. We only recommend products we'd use ourselves.
+      </p>
+    </div>
+  </div>
+
+  <!-- Filter + products -->
+  <section class="bg-gray-50 py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Category filter -->
+      <div class="flex flex-wrap gap-2 mb-12" role="group" aria-label="Filter by category">
+        <button
+          data-filter="all"
+          class="filter-btn px-4 py-2 rounded-full text-sm font-montserrat font-semibold border transition-colors bg-cyan text-dark-blue border-transparent"
+        >
+          All Categories
+        </button>
+        {categoryNames.map((cat) => (
+          <button
+            data-filter={cat}
+            class="filter-btn px-4 py-2 rounded-full text-sm font-montserrat font-semibold border transition-colors bg-white text-gray-600 border-gray-200 hover:border-cyan hover:text-vivid-cyan"
+          >
+            {categoryMeta[cat].emoji} {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grouped sections -->
+      {categoryNames.map((cat) => {
+        const catProducts = products.filter((p) => p.category === cat);
+        return (
+          <div data-section={cat} class="category-section mb-14">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="text-2xl" aria-hidden="true">{categoryMeta[cat].emoji}</span>
+              <div>
+                <h2 class="font-montserrat font-bold text-xl text-dark-blue">{cat}</h2>
+                <p class="text-gray-500 text-sm">{categoryMeta[cat].description}</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {catProducts.map((product) => (
+                <ProductCard {...product} />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons  = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const sections = document.querySelectorAll<HTMLElement>('[data-section]');
+
+  const activeClasses   = ['bg-cyan', 'text-dark-blue', 'border-transparent'];
+  const inactiveClasses = ['bg-white', 'text-gray-600', 'border-gray-200'];
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      buttons.forEach((b) => {
+        b.classList.remove(...activeClasses);
+        b.classList.add(...inactiveClasses);
+      });
+      btn.classList.remove(...inactiveClasses);
+      btn.classList.add(...activeClasses);
+
+      sections.forEach((section) => {
+        const show = filter === 'all' || section.dataset.section === filter;
+        section.classList.toggle('hidden', !show);
+      });
+    });
+  });
+</script>

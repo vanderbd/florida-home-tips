@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import FAQSchema from '../components/FAQSchema.astro';
+
+const checklistSections = [
+  {
+    heading: 'Before Hurricane Season (May)',
+    items: [
+      'Inspect roof for cracked or missing shingles and damaged flashing',
+      'Test and service your generator (30-min load test)',
+      'Inventory hurricane shutters — identify any gaps in coverage',
+      'Review your homeowner\'s insurance wind deductible',
+      'Photograph every room for insurance claim documentation',
+    ],
+  },
+  {
+    heading: 'Monthly Year-Round',
+    items: [
+      'Check HVAC condensate drain pan for standing water or slime',
+      'Inspect under bathroom sinks and around toilet bases for moisture',
+      'Treat exterior perimeter with pest control spray',
+      'Check indoor humidity — target 45–55% relative humidity',
+    ],
+  },
+  {
+    heading: 'Spring Maintenance (March–April)',
+    items: [
+      'Soft-wash roof algae streaks before summer rainy season',
+      'Pressure-wash driveway and walkways',
+      'Clean gutters and downspouts',
+      'Touch up exterior paint and re-caulk cracked stucco',
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: 'What\'s included in the checklist?',
+    a: 'The Florida Home Maintenance Checklist covers 12 essential tasks organized by season — from pre-hurricane prep in May to post-storm roof inspection, monthly humidity monitoring, and annual exterior maintenance. Each task includes a brief explanation of why it matters specifically in Florida\'s climate.',
+  },
+  {
+    q: 'Is it really free?',
+    a: 'Yes, completely free. Enter your email and we\'ll deliver the PDF instantly. You\'ll also receive occasional Florida home tips — unsubscribe anytime with one click.',
+  },
+  {
+    q: 'What format is the checklist?',
+    a: 'A clean, printable PDF designed to be taped inside a cabinet or saved to your phone. One page, no fluff.',
+  },
+  {
+    q: 'Do I need to do all of these myself?',
+    a: 'Not necessarily. The checklist tells you what needs to happen — some tasks are easy DIY, others are better delegated to a licensed contractor. We note which is which in the full guide.',
+  },
+];
+---
+
+<BaseLayout
+  title="Free Florida Home Maintenance Checklist — Florida Home Tips"
+  description="Download the free Florida Home Maintenance Checklist — 12 seasonal tasks every Florida homeowner should do each year to protect against mold, storms, pests, and costly repairs."
+>
+  <BreadcrumbSchema
+    crumbs={[
+      { name: 'Home',      url: new URL('/', Astro.site).toString() },
+      { name: 'Checklist', url: new URL('/checklist', Astro.site).toString() },
+    ]}
+  />
+  <FAQSchema faqs={faqs} />
+
+  <!-- Hero -->
+  <div class="bg-gradient-to-br from-dark-blue via-dark-blue to-brand-blue py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Left: value prop + checklist preview -->
+        <div>
+          <p class="font-montserrat text-cyan text-sm font-semibold uppercase tracking-widest mb-4">
+            Free Download
+          </p>
+          <h1 class="font-montserrat font-extrabold text-3xl md:text-5xl text-white mb-5 leading-tight">
+            The Florida Home<br />Maintenance Checklist
+          </h1>
+          <p class="text-white/80 text-lg mb-8 leading-relaxed">
+            12 essential seasonal tasks every Florida homeowner should complete each year — organized so nothing falls through the cracks.
+          </p>
+          <ul class="space-y-2 mb-6" aria-label="What's included">
+            {checklistSections.flatMap((s) => s.items).slice(0, 6).map((item) => (
+              <li class="flex items-start gap-3 text-white/80 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-cyan flex-shrink-0 mt-0.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+            <li class="text-white/50 text-sm pl-7 italic">…and 6 more tasks in the full checklist</li>
+          </ul>
+        </div>
+
+        <!-- Right: Kit form embed -->
+        <div class="bg-white rounded-2xl p-8 shadow-2xl">
+          <h2 class="font-montserrat font-bold text-xl text-dark-blue mb-2">
+            Get Your Free Copy
+          </h2>
+          <p class="text-gray-500 text-sm mb-6">
+            Enter your email below and we'll deliver the PDF instantly.
+          </p>
+
+          <!-- KIT FORM EMBED -->
+          <!-- Paste your Kit (ConvertKit) embed code here -->
+          <!-- The form should collect: First Name (optional), Email (required) -->
+          <!-- Tag: checklist-download | Deliver: Florida Home Maintenance Checklist PDF -->
+          <div class="rounded-lg border-2 border-dashed border-gray-200 p-6 text-center text-gray-400">
+            <p class="font-montserrat font-semibold text-sm mb-1">Kit Form Goes Here</p>
+            <p class="text-xs">Paste your ConvertKit embed code above this placeholder</p>
+          </div>
+
+          <p class="text-gray-400 text-xs mt-4 text-center">
+            No spam. Unsubscribe anytime. We respect your privacy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What's inside -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <p class="font-montserrat font-semibold text-sm uppercase tracking-wider text-vivid-cyan mb-2">
+          Inside the Checklist
+        </p>
+        <h2 class="font-montserrat font-bold text-2xl md:text-3xl text-dark-blue">
+          What You'll Get
+        </h2>
+      </div>
+      <div class="space-y-14">
+        {checklistSections.map((section) => (
+          <div>
+            <h3 class="font-montserrat font-bold text-dark-blue text-lg mb-4 pt-8 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan inline-block flex-shrink-0" aria-hidden="true" />
+              {section.heading}
+            </h3>
+            <ul class="space-y-2 pl-4">
+              {section.items.map((item) => (
+                <li class="flex items-start gap-3 text-gray-600 text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 text-azure flex-shrink-0 mt-0.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-gray-50 py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-montserrat font-bold text-2xl md:text-3xl text-dark-blue mb-10 text-center">
+        Frequently Asked Questions
+      </h2>
+      <dl class="space-y-6">
+        {faqs.map(({ q, a }) => (
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <dt class="font-montserrat font-bold text-dark-blue mb-2">{q}</dt>
+            <dd class="text-gray-600 text-sm leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <div class="bg-dark-blue py-14 text-center">
+    <div class="max-w-xl mx-auto px-4">
+      <h2 class="font-montserrat font-bold text-2xl text-white mb-4">
+        Ready to protect your Florida home?
+      </h2>
+      <p class="text-white/70 mb-8 text-base">
+        Download the checklist and stop wondering what you might be missing.
+      </p>
+      <a
+        href="#"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+        class="inline-flex items-center px-8 py-4 bg-cyan text-dark-blue font-montserrat font-bold text-base rounded-xl hover:bg-vivid-cyan transition-colors"
+      >
+        Get the Free Checklist ↑
+      </a>
+    </div>
+  </div>
+</BaseLayout>

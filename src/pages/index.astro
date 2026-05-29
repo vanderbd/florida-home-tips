@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import TrustBar from '../components/home/TrustBar.astro';
+import ProblemNav from '../components/home/ProblemNav.astro';
+import FeaturedGuides from '../components/home/FeaturedGuides.astro';
+import EmailCapture from '../components/home/EmailCapture.astro';
+import ToolsRecommendations from '../components/home/ToolsRecommendations.astro';
+import RecentPosts from '../components/home/RecentPosts.astro';
+import LocalPartners from '../components/home/LocalPartners.astro';
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://floridahometips.com';
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: 'Florida Home Tips',
+      description: 'Simple Home Tips for Florida Living',
+      inLanguage: 'en-US',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      url: `${siteUrl}/`,
+      name: 'Florida Home Tips',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/images/logo/square-dark.svg`,
+        width: 512,
+        height: 512,
+      },
+      sameAs: [],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Simple Home Tips for Florida Living"
+  description="Protect your Florida home from humidity, mold, hurricanes, and pests — without wasting money. Free checklists, guides, and product recommendations for Florida homeowners."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} slot="head" />
+
+  <HeroSection />
+  <TrustBar />
+  <ProblemNav />
+  <FeaturedGuides />
+  <EmailCapture />
+  <ToolsRecommendations />
+  <RecentPosts />
+  <LocalPartners />
+</BaseLayout>

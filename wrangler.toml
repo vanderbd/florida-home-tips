@@ -1,0 +1,13 @@
+# Cloudflare Pages configuration — Florida Home Tips
+# Docs: https://developers.cloudflare.com/pages/
+#
+# Deploy manually:  npx wrangler pages deploy dist --project-name florida-home-tips
+# Auto-deploy:      push to main branch (configured in Cloudflare Pages dashboard)
+
+name = "florida-home-tips"
+compatibility_date = "2026-01-01"
+pages_build_output_dir = "./dist"
+
+# When D1 / R2 / Workers features are needed, add bindings here and
+# switch to @astrojs/cloudflare with output: 'hybrid' in astro.config.mjs.
+# See: https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/

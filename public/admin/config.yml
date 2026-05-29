@@ -1,0 +1,90 @@
+# Decap CMS Configuration — Florida Home Tips
+#
+# AUTH SETUP REQUIRED BEFORE THIS CMS WORKS:
+# This config uses the GitHub backend which requires an OAuth proxy.
+# Steps to activate:
+#   1. Create a GitHub OAuth App (Settings → Developer Settings → OAuth Apps)
+#      - Homepage URL: https://floridahometips.com
+#      - Callback URL: https://floridahometips.com/oauth/callback
+#   2. Deploy the Cloudflare Worker OAuth proxy (see docs/decap-auth-setup.md when created)
+#   3. Update the repo field below with your actual GitHub username/repo
+#
+# For local development without auth:
+#   Run `npx decap-server` in the project root (separate terminal), then visit /admin
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/florida-home-tips
+  branch: main
+  # Uncomment and update when Cloudflare Worker OAuth proxy is deployed:
+  # auth_endpoint: /oauth/auth
+  # base_url: https://floridahometips.com
+
+local_backend: true
+
+media_folder: public/images/blog
+public_folder: /images/blog
+
+collections:
+  - name: blog
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    preview_path: /blog/{{slug}}
+    fields:
+      - label: Title
+        name: title
+        widget: string
+
+      - label: Description
+        name: description
+        widget: text
+        hint: "Used for SEO meta description and post card previews (150–160 characters recommended)"
+
+      - label: Publish Date
+        name: pubDate
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: "YYYY-MM-DDTHH:mm:ss.SSSZ"
+        default: ""
+
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Mold & Humidity
+          - Hurricane Prep
+          - Pests
+          - Exterior Maintenance
+          - DIY Fixes
+
+      - label: Tags
+        name: tags
+        widget: list
+        default: []
+        hint: "Comma-separated keywords"
+
+      - label: Hero Image
+        name: image
+        widget: image
+        required: false
+        hint: "Upload to /public/images/blog/ — will be served from /images/blog/"
+
+      - label: Featured Post
+        name: featured
+        widget: boolean
+        default: false
+        hint: "Featured posts appear in the home page Featured Guides section"
+
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: true
+        hint: "Draft posts are built but not shown in listings — set to false to publish"
+
+      - label: Body
+        name: body
+        widget: markdown
